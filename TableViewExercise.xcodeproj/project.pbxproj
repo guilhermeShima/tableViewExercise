@@ -56,15 +56,31 @@
 		42007E8A2292EFE300977E0D /* TableViewExercise */ = {
 			isa = PBXGroup;
 			children = (
+				42007EA02292F1E500977E0D /* Modules */,
 				42007E8B2292EFE300977E0D /* AppDelegate.swift */,
-				42007E8D2292EFE300977E0D /* ViewController.swift */,
-				42007E8F2292EFE300977E0D /* Main.storyboard */,
 				42007E952292EFE600977E0D /* Assets.xcassets */,
 				42007E972292EFE600977E0D /* LaunchScreen.storyboard */,
 				42007E9A2292EFE600977E0D /* Info.plist */,
 				42007E922292EFE300977E0D /* TableViewExercise.xcdatamodeld */,
 			);
 			path = TableViewExercise;
+			sourceTree = "<group>";
+		};
+		42007EA02292F1E500977E0D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				42007EA12292F1F100977E0D /* Main */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		42007EA12292F1F100977E0D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				42007E8D2292EFE300977E0D /* ViewController.swift */,
+				42007E8F2292EFE300977E0D /* Main.storyboard */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
