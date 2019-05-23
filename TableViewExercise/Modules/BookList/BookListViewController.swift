@@ -18,12 +18,12 @@ class BookListViewController: UIViewController {
     var bookType: BookType?
     
     var unreadBooks: [Book] = [
-        Book(name: "Livro Teste n lido", author: "Joao siLVA ODVO IO", yearOfPublication: Date()),
+        Book(name: "Harry Potter e o Cálice de Fogo", author: "J. K. Rowling", yearOfPublication: Date()),
     ]
     
     var readbooks: [Book] = [
-        Book(name: "Livro Teste", author: "Joao siLVA ODVO IO", yearOfPublication: Date()),
-        Book(name: "Bla", author: "Blw", yearOfPublication: Date())
+        Book(name: "Eu, Robô", author: "Isaac Asimov", yearOfPublication: Date()),
+        Book(name: "Neuromancer", author: "William Gibson", yearOfPublication: Date())
     ]
     
     override func viewDidLoad() {
@@ -37,6 +37,7 @@ class BookListViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
         
+        //Registering nibs
         let nib = UINib.init(nibName: "BookTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "bookTableViewCell")
 
@@ -49,12 +50,12 @@ class BookListViewController: UIViewController {
         
         let enabledColor = UIColor(red: 175/255, green: 230/255, blue: 132/255, alpha: 1)
         let disabledColor = UIColor(red: 175/255, green: 230/255, blue: 132/255, alpha: 0.5)
+        addBookButton.isEnabled = isEditing
+        addBookButton.backgroundColor = isEditing ? enabledColor : disabledColor
         
         tableView.isEditing = !isEditing
-        addBookButton.isEnabled = isEditing
 
         navigationItem.rightBarButtonItem?.title = isEditing ? "Edit" : "Done"
-        addBookButton.backgroundColor = isEditing ? enabledColor : disabledColor
     }
 }
 
@@ -64,24 +65,7 @@ extension BookListViewController: UITableViewDataSource {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "bookHeaderView") as? BookHeaderView
-        
-        guard let headerView = view else { return UIView() }
-        
-        if section == 0 {
-            headerView.configure(title: "Não lidos")
-        } else {
-            headerView.configure(title: "Lidos")
-        }
-
-        return headerView
-    }
-    
+    //Table cell functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return unreadBooks.count
@@ -91,7 +75,6 @@ extension BookListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bookTableViewCell") as? BookTableViewCell
-        
         guard let bookCell = cell else { return UITableViewCell() }
         
         if indexPath.section == 0 {
@@ -99,10 +82,10 @@ extension BookListViewController: UITableViewDataSource {
         } else {
             bookCell.configure(for: readbooks[indexPath.row])
         }
-        
         return bookCell
     }
     
+    //Move cells functions
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -115,28 +98,65 @@ extension BookListViewController: UITableViewDataSource {
         if fromSection == 0 {
             let item = unreadBooks[sourceIndexPath.row]
             
-            //moved book to same session
             if fromSection == toSection {
+                //moved book to same session
                 unreadBooks.remove(at: sourceIndexPath.row)
                 unreadBooks.insert(item, at: destinationIndexPath.row)
             } else {
+                //move book between sessions and update book status
                 unreadBooks.remove(at: sourceIndexPath.row)
                 readbooks.insert(item, at: destinationIndexPath.row)
+                item.updateReadStatus()
             }
         } else {
             let item = readbooks[sourceIndexPath.row]
             
-            //moved book to same session
             if fromSection == toSection {
+                //moved book to same session
                 readbooks.remove(at: sourceIndexPath.row)
                 readbooks.insert(item, at: destinationIndexPath.row)
             } else {
+                //move book between sessions and update book status
                 readbooks.remove(at: sourceIndexPath.row)
                 unreadBooks.insert(item, at: destinationIndexPath.row)
+                item.updateReadStatus()
             }
+        }
+    }
+    
+    //Editing table view functions
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+
+            if indexPath.section == 0 {
+                unreadBooks.remove(at: indexPath.row)
+
+            } else {
+                readbooks.remove(at: indexPath.row)
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
 
 extension BookListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "bookHeaderView") as? BookHeaderView
+        guard let headerView = view else { return UIView() }
+        
+        if section == 0 {
+            headerView.configure(title: "Não lidos")
+        } else {
+            headerView.configure(title: "Lidos")
+        }
+        return headerView
+    }
 }

@@ -20,4 +20,8 @@ public class Book {
         self.yearOfPublication = yearOfPublication
         self.hasBeenRead = false
     }
+    
+    public func updateReadStatus() {
+        self.hasBeenRead = !hasBeenRead
+    }
 }
