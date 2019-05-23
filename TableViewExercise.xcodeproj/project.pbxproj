@@ -13,8 +13,14 @@
 		42007E962292EFE600977E0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42007E952292EFE600977E0D /* Assets.xcassets */; };
 		42007E992292EFE600977E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42007E972292EFE600977E0D /* LaunchScreen.storyboard */; };
 		42007EA52292F7D900977E0D /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42007EA42292F7D900977E0D /* StaticTableViewController.swift */; };
+		429623462296C4F3006260F9 /* BookHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429623452296C4F3006260F9 /* BookHeaderView.swift */; };
+		429623482296C503006260F9 /* BookHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 429623472296C503006260F9 /* BookHeaderView.xib */; };
 		42BB254E22942EE100509E44 /* BookTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BB254D22942EE100509E44 /* BookTypeEnum.swift */; };
 		42D9D384229586330043603E /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9D383229586330043603E /* BookListViewController.swift */; };
+		42D9D387229590AD0043603E /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9D386229590AD0043603E /* AddBookViewController.swift */; };
+		42D9D389229590D30043603E /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9D388229590D30043603E /* Book.swift */; };
+		42D9D38D229597590043603E /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D9D38B229597590043603E /* BookTableViewCell.swift */; };
+		42D9D38E229597590043603E /* BookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42D9D38C229597590043603E /* BookTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +32,14 @@
 		42007E982292EFE600977E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42007E9A2292EFE600977E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42007EA42292F7D900977E0D /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
+		429623452296C4F3006260F9 /* BookHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHeaderView.swift; sourceTree = "<group>"; };
+		429623472296C503006260F9 /* BookHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookHeaderView.xib; sourceTree = "<group>"; };
 		42BB254D22942EE100509E44 /* BookTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTypeEnum.swift; sourceTree = "<group>"; };
 		42D9D383229586330043603E /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
+		42D9D386229590AD0043603E /* AddBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
+		42D9D388229590D30043603E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		42D9D38B229597590043603E /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		42D9D38C229597590043603E /* BookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				42007E8F2292EFE300977E0D /* Main.storyboard */,
+				42D9D3852295907D0043603E /* AddBook */,
 				42D9D382229584E20043603E /* BookList */,
 				42007EA12292F1F100977E0D /* StaticTable */,
 			);
@@ -89,10 +102,20 @@
 			path = StaticTable;
 			sourceTree = "<group>";
 		};
+		429623442296C4D5006260F9 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				429623452296C4F3006260F9 /* BookHeaderView.swift */,
+				429623472296C503006260F9 /* BookHeaderView.xib */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
 		42BB254C22942ED300509E44 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				42BB254D22942EE100509E44 /* BookTypeEnum.swift */,
+				42D9D388229590D30043603E /* Book.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -100,9 +123,28 @@
 		42D9D382229584E20043603E /* BookList */ = {
 			isa = PBXGroup;
 			children = (
+				429623442296C4D5006260F9 /* HeaderView */,
+				42D9D38A229597390043603E /* Cell */,
 				42D9D383229586330043603E /* BookListViewController.swift */,
 			);
 			path = BookList;
+			sourceTree = "<group>";
+		};
+		42D9D3852295907D0043603E /* AddBook */ = {
+			isa = PBXGroup;
+			children = (
+				42D9D386229590AD0043603E /* AddBookViewController.swift */,
+			);
+			path = AddBook;
+			sourceTree = "<group>";
+		};
+		42D9D38A229597390043603E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				42D9D38B229597590043603E /* BookTableViewCell.swift */,
+				42D9D38C229597590043603E /* BookTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +205,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D9D38E229597590043603E /* BookTableViewCell.xib in Resources */,
+				429623482296C503006260F9 /* BookHeaderView.xib in Resources */,
 				42007E992292EFE600977E0D /* LaunchScreen.storyboard in Resources */,
 				42007E962292EFE600977E0D /* Assets.xcassets in Resources */,
 				42007E912292EFE300977E0D /* Main.storyboard in Resources */,
@@ -176,10 +220,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D9D38D229597590043603E /* BookTableViewCell.swift in Sources */,
 				42007E8C2292EFE300977E0D /* AppDelegate.swift in Sources */,
+				42D9D387229590AD0043603E /* AddBookViewController.swift in Sources */,
+				42D9D389229590D30043603E /* Book.swift in Sources */,
 				42007EA52292F7D900977E0D /* StaticTableViewController.swift in Sources */,
 				42BB254E22942EE100509E44 /* BookTypeEnum.swift in Sources */,
 				42007E942292EFE300977E0D /* TableViewExercise.xcdatamodeld in Sources */,
+				429623462296C4F3006260F9 /* BookHeaderView.swift in Sources */,
 				42D9D384229586330043603E /* BookListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

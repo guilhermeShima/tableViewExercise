@@ -28,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="-1113" y="21"/>
         </scene>
-        <!--CATEGORIAS-->
+        <!--Categorias-->
         <scene sceneID="XHd-QM-D9x">
             <objects>
                 <tableViewController id="s2a-Ts-6rl" customClass="StaticTableViewController" customModule="TableViewExercise" customModuleProvider="target" sceneMemberID="viewController">
@@ -148,7 +148,7 @@
                             <outlet property="delegate" destination="s2a-Ts-6rl" id="H1v-wY-SXO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="CATEGORIAS" id="FUv-2X-Hjy"/>
+                    <navigationItem key="navigationItem" title="Categorias" id="FUv-2X-Hjy"/>
                     <connections>
                         <outlet property="fantasyCell" destination="0oW-y3-Z7z" id="7lE-N9-RHJ"/>
                         <outlet property="horrorCell" destination="0OG-72-7UP" id="9If-5s-Azp"/>
@@ -167,16 +167,70 @@
                     <view key="view" contentMode="scaleToFill" id="Dle-yf-Kqi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wWL-eg-zJE">
+                                <rect key="frame" x="0.0" y="140" width="414" height="662"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6z-NJ-kA7">
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <color key="backgroundColor" red="0.68627450980000004" green="0.90196078430000004" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="V0E-9K-pll"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="ADICIONAR LIVRO">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="rXn-aY-RGY" kind="show" id="PUZ-Y6-cJv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="htH-X5-lSc" firstAttribute="trailing" secondItem="wWL-eg-zJE" secondAttribute="trailing" id="8FI-d4-TtO"/>
+                            <constraint firstItem="wWL-eg-zJE" firstAttribute="top" secondItem="htH-X5-lSc" secondAttribute="top" id="CCA-Nn-xve"/>
+                            <constraint firstItem="htH-X5-lSc" firstAttribute="trailing" secondItem="c6z-NJ-kA7" secondAttribute="trailing" id="P1l-hH-TYO"/>
+                            <constraint firstItem="c6z-NJ-kA7" firstAttribute="leading" secondItem="htH-X5-lSc" secondAttribute="leading" id="ZhZ-K4-jrV"/>
+                            <constraint firstItem="wWL-eg-zJE" firstAttribute="leading" secondItem="htH-X5-lSc" secondAttribute="leading" id="s4b-bq-KPv"/>
+                            <constraint firstItem="c6z-NJ-kA7" firstAttribute="top" secondItem="wWL-eg-zJE" secondAttribute="bottom" id="uhb-TV-rgZ"/>
+                            <constraint firstItem="htH-X5-lSc" firstAttribute="bottom" secondItem="c6z-NJ-kA7" secondAttribute="bottom" id="y6y-UN-CZY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="htH-X5-lSc"/>
                     </view>
                     <navigationItem key="navigationItem" id="JUu-Fh-N8k">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Wle-PS-VOJ"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Wle-PS-VOJ">
+                            <connections>
+                                <action selector="didTapEdit:" destination="hTM-fU-Sd4" id="cnv-l6-iqD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addBookButton" destination="c6z-NJ-kA7" id="Ijd-QH-tlO"/>
+                        <outlet property="tableView" destination="wWL-eg-zJE" id="pON-zW-BSl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4x-Mf-77e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="887" y="21"/>
+            <point key="canvasLocation" x="886.95652173913049" y="20.758928571428569"/>
+        </scene>
+        <!--Livro-->
+        <scene sceneID="8Wb-8F-nSU">
+            <objects>
+                <viewController id="rXn-aY-RGY" customClass="AddBookViewController" customModule="TableViewExercise" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1xX-96-OhA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="4jB-Ru-P33"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Livro" id="fwS-9N-HJR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oGn-Zn-8FN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957" y="21"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
