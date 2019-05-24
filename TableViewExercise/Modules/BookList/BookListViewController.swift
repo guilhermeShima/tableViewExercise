@@ -18,12 +18,12 @@ class BookListViewController: UIViewController {
     var bookType: BookType?
     
     var unreadBooks: [Book] = [
-        Book(name: "Harry Potter e o Cálice de Fogo", author: "J. K. Rowling", yearOfPublication: Date()),
+        Book(name: "Harry Potter e o Cálice de Fogo", author: "J. K. Rowling", yearOfPublication: "2005"),
     ]
     
     var readbooks: [Book] = [
-        Book(name: "Eu, Robô", author: "Isaac Asimov", yearOfPublication: Date()),
-        Book(name: "Neuromancer", author: "William Gibson", yearOfPublication: Date())
+        Book(name: "Eu, Robô", author: "Isaac Asimov", yearOfPublication: "1209"),
+        Book(name: "Neuromancer", author: "William Gibson", yearOfPublication: "9889")
     ]
     
     override func viewDidLoad() {
@@ -45,9 +45,11 @@ class BookListViewController: UIViewController {
         tableView.register(header, forHeaderFooterViewReuseIdentifier: "bookHeaderView")
     }
     
+    //Function to switch the edit button state
     @IBAction func didTapEdit(_ sender: Any) {
         let isEditing = tableView.isEditing
         
+        //The user can add a new book only if the table is not in edit mode
         let enabledColor = UIColor(red: 175/255, green: 230/255, blue: 132/255, alpha: 1)
         let disabledColor = UIColor(red: 175/255, green: 230/255, blue: 132/255, alpha: 0.5)
         addBookButton.isEnabled = isEditing
@@ -56,6 +58,14 @@ class BookListViewController: UIViewController {
         tableView.isEditing = !isEditing
 
         navigationItem.rightBarButtonItem?.title = isEditing ? "Edit" : "Done"
+    }
+    
+    private func showSuccessDeletingAlert() {
+        let alert = UIAlertController(title: "Sucesso",
+                                      message: "Livro deletado com sucesso!",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
 
@@ -139,6 +149,7 @@ extension BookListViewController: UITableViewDataSource {
                 readbooks.remove(at: indexPath.row)
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
+            showSuccessDeletingAlert()
         }
     }
 }
@@ -158,5 +169,24 @@ extension BookListViewController: UITableViewDelegate {
             headerView.configure(title: "Lidos")
         }
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var book: Book?
+        
+        if indexPath.section == 0 {
+            book = unreadBooks[indexPath.row]
+        } else {
+            book = readbooks[indexPath.row]
+        }
+        
+        //Removing the selection in index
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        //Presenting the add book view
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let bookViewController = storyBoard.instantiateViewController(withIdentifier: "AddBookVC") as! AddBookViewController
+        bookViewController.book = book
+        navigationController?.show(bookViewController, sender: self)
     }
 }

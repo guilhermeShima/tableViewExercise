@@ -11,10 +11,10 @@ import Foundation
 public class Book {
     var name: String
     var author: String
-    var yearOfPublication: Date
+    var yearOfPublication: String
     var hasBeenRead: Bool
     
-    init(name: String, author: String, yearOfPublication: Date) {
+    init(name: String, author: String, yearOfPublication: String) {
         self.name = name
         self.author = author
         self.yearOfPublication = yearOfPublication

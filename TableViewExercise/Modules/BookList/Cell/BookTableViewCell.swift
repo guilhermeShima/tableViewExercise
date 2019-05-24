@@ -20,10 +20,7 @@ class BookTableViewCell: UITableViewCell {
     }
 
     func configure(for book: Book) {
-        let calendar = Calendar.current
-        let yearText = String(calendar.component(.year, from: book.yearOfPublication))
-
         nameLabel.text = book.name
-        authorLabel.text = book.author + ", \(yearText)"
+        authorLabel.text = book.author + ", \(book.yearOfPublication)"
     }
 }
